@@ -17,3 +17,16 @@ The vignette can be installed by typing:
 This will open a web browser, and click on the `html` link.
 
 You can also view the vignette on the web at https://htmlpreview.github.io/?https://github.com/whitlock/OutFLANK/blob/master/inst/doc/OutFLANKAnalysis.html
+
+# 2026 installation update
+
+Some of the code for installing R libraries from github has changed since the tutorial was written. The following works for R version > 4.5
+
+install.packages("remotes")
+library(remotes)
+remotes::install_github("jdstorey/qvalue")
+library(qvalue)
+
+remotes::install_github("whitlock/OutFLANK", force=TRUE)
+library(OutFLANK)
+
