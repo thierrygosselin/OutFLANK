@@ -20,4 +20,12 @@ if (requireNamespace("qvalue", quietly = TRUE)) {
     error = identity
   )
   stopifnot(inherits(err, "error"), grepl("invalid neutral calibration", err$message))
+
+  # qvalue() failures (such as pi0 <= 0 in issue #13) should be contextual.
+  qvalue <- function(...) stop("missing values and NaN's not allowed if 'na.rm' is FALSE")
+  err <- tryCatch(
+    pOutlierFinderChiSqNoCorr(x, Fstbar = 0.1, dfInferred = 10),
+    error = identity
+  )
+  stopifnot(inherits(err, "error"), grepl("cannot estimate q-values for", err$message))
 }
